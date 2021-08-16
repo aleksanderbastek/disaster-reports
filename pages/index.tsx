@@ -1,6 +1,13 @@
 import type { NextPage } from "next";
+
+import MapChart from "../components/MapChart";
+
 const Home: NextPage = () => {
-	return <></>;
+	return (
+		<>
+			<MapChart />
+		</>
+	);
 };
 
 export default Home;
