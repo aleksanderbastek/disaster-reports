@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 
-import { CountryInfoResponse, CountryInfo } from "../interfaces";
+import { CountryInfoResponse } from "../interfaces";
 
 export const useCountryDisasterNews = (country: string | null, page: number) => {
 	const filterValue = country === null ? "" : `&offset=${page}&filter[value]=${country}`;
