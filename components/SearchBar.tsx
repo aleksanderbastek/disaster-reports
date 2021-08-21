@@ -1,30 +1,30 @@
 import { Input, Space, AutoComplete } from "antd";
-import { useState, useEffect } from "react";
+
+import countryList from "../public/countryList";
 
 const { Search } = Input;
-const options = [
-	{ value: "Angola" },
-	{ value: "Algeria" },
-	{ value: "Afganistan" },
-	{ value: "Poland" },
-	{ value: "Panama" }
-];
 interface Props {
-	handleClick(countryName: string): void;
+	handleSelectCountry(countryName: string): void;
 }
 
-const SearchBar = ({ handleClick }: Props) => {
+const SearchBar = ({ handleSelectCountry }: Props) => {
 	return (
 		<>
 			<Space direction="vertical">
-				<AutoComplete options={options}>
+				<AutoComplete
+					options={countryList}
+					onSelect={handleSelectCountry}
+					filterOption={(inputValue, option) =>
+						option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
+					}
+				>
 					<Search
 						size="large"
 						placeholder="input here"
 						enterButton="Search"
 						allowClear
-						onSearch={handleClick}
 						style={{ width: 600 }}
+						onSearch={handleSelectCountry}
 					/>
 				</AutoComplete>
 			</Space>
