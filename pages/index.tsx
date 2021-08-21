@@ -1,11 +1,13 @@
 import type { NextPage } from "next";
+import { ReactQueryDevtools } from "react-query/devtools";
 
-import MapChart from "../components/MapChart";
+import AppContainer from "../components/AppContainer";
 
 const Home: NextPage = () => {
 	return (
 		<>
-			<MapChart />
+			<AppContainer />
+			<ReactQueryDevtools />
 		</>
 	);
 };
