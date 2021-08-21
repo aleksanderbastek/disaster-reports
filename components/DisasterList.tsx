@@ -1,29 +1,37 @@
-import { List, Pagination } from "antd";
+import { SearchOutlined } from "@ant-design/icons";
+import { Button, List, Pagination } from "antd";
 import React from "react";
 import { UseQueryResult } from "react-query";
 
-import { CountryInfoResponse, CountryInfo } from "../interfaces";
+import { CountryInfoResponse } from "../interfaces";
 
 interface Props {
 	countryQuery: UseQueryResult<CountryInfoResponse, unknown> | null;
 	countryName: string;
 	page: number;
-	totalCount?: number;
 	handlePagin(page: number);
 }
 
 const DisasterList = ({ countryQuery, countryName, page, handlePagin }: Props) => {
-	console.log(countryQuery);
 	return (
 		<div>
-			{countryQuery.data !== null ? (
-				countryQuery.isLoading && !(countryName === "") ? (
+			{countryQuery.data !== null && !(countryName === "") ? (
+				countryQuery.isLoading ? (
 					<h2>Ładowanie</h2>
 				) : (
 					<>
 						<List
 							size="small"
-							header={<div>Results for {countryName}</div>}
+							header={
+								<div>
+									<div>Results for {countryName}</div>
+									<Button
+										type="primary"
+										shape="circle"
+										icon={<SearchOutlined />}
+									/>
+								</div>
+							}
 							bordered
 							dataSource={countryQuery.data.data}
 							renderItem={item => (
