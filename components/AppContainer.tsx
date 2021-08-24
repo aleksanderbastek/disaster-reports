@@ -25,12 +25,13 @@ const AppContainer = () => {
 			<SearchWrapper>
 				<SearchBar handleSelectCountry={handleSelectCountry} />
 			</SearchWrapper>
-			<ListWrapper>
+			<ListWrapper showList={showList} isLoading={countryQuery.isLoading}>
 				<DisasterList
 					countryQuery={countryQuery}
 					countryName={countryName}
 					handlePagin={handlePagin}
 					page={page}
+					handleCleanCountry={() => setCountryName("")}
 				/>
 			</ListWrapper>
 		</>

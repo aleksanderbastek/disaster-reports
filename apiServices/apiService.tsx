@@ -14,7 +14,6 @@ export const useCountryDisasterNews = (country: string | null, page: number) => 
 
 			return json;
 		}
-
 		return null;
 	});
 
