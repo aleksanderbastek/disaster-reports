@@ -12,7 +12,7 @@ export const SearchWrapper = styled.div`
 `;
 export const ListWrapper = styled.div<ListWrapperProps>`
 	position: absolute;
-	right: ${props => (props.showList || props.isLoading ? "0%" : "-100%")};
+	right: ${props => (props.showList && !props.isLoading ? "0%" : "-100%")};
 	margin: 10px;
 	width: 40vw;
 	transition: 1s;

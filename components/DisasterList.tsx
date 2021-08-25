@@ -26,7 +26,7 @@ const DisasterList = ({
 		<div>
 			{countryQuery.data !== null && !(countryName === "") ? (
 				countryQuery.isLoading ? (
-					<h2>Ładowanie</h2>
+					<h2></h2>
 				) : (
 					<>
 						<List
