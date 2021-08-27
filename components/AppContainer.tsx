@@ -1,25 +1,33 @@
 import React, { useEffect, useState } from "react";
+import ReactTooltip from "react-tooltip";
 
 import { useCountryDisasterNews } from "../apiServices/apiService";
 import useConvertPagination from "../hooks/paginationConverter";
 
 import DisasterList from "./DisasterList";
+import MapChart from "./MapChart";
 import SearchBar from "./SearchBar";
 import { ListWrapper, SearchWrapper } from "./StyledAppContainer";
 
 const AppContainer = () => {
 	const [countryName, setCountryName] = useState(null as string | null);
 	const [page, setPage] = useState(1);
+	const [content, setContent] = useState("" as string | null);
+
 	const handlePagin = page => setPage(page);
-	const convertPage = useConvertPagination(page);
 	const handleSelectCountry = (countryName: string) => setCountryName(countryName);
+
+	const convertPage = useConvertPagination(page);
 	const countryQuery = useCountryDisasterNews(countryName, convertPage);
+
 	const showList = countryName !== "" && countryName !== null ? true : false;
 
 	useEffect(() => {
 		setPage(1);
 	}, [countryName]);
-
+	useEffect(() => {
+		console.log(content);
+	}, [content]);
 	return (
 		<>
 			<SearchWrapper>
@@ -34,6 +42,8 @@ const AppContainer = () => {
 					handleCleanCountry={() => setCountryName("")}
 				/>
 			</ListWrapper>
+			<MapChart selectCountry={handleSelectCountry} setTooltipContent={setContent} />
+			<ReactTooltip backgroundColor="#1f1a1a">{content}</ReactTooltip>
 		</>
 	);
 };
