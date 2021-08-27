@@ -1,6 +1,6 @@
 export interface CountryInfo {
 	fields: {
-		title: string;
+		name: string;
 	};
 	href: string;
 	id: string;
@@ -12,6 +12,7 @@ export interface CountryInfoResponse {
 	totalCount: number;
 }
 
+//CountryList
 export interface countryListData {
 	id: number;
 	score: number;
@@ -25,4 +26,34 @@ export interface countryListResponse {
 	count: number;
 	data: countryListData[];
 	totalCount: number;
+}
+
+// TotalCountList
+export interface Data {
+	value: string;
+	count: number;
+}
+
+interface Country {
+	type: string;
+	data: Data[];
+	missing: number;
+	more: boolean;
+}
+
+interface Facet {
+	country: Country;
+}
+
+interface Embedded {
+	facets: Facet;
+}
+
+export interface totalCountListResponse {
+	time: number;
+	href: string;
+	took: number;
+	totalCount: number;
+	count: number;
+	embedded: Embedded;
 }
