@@ -46,7 +46,7 @@ const DisasterList = ({
 							bordered
 							dataSource={countryQuery.data.data}
 							renderItem={item => (
-								<List.Item key={item.id}>{item.fields.title}</List.Item>
+								<List.Item key={item.id}>{item.fields.name}</List.Item>
 							)}
 							footer={
 								<Pagination
