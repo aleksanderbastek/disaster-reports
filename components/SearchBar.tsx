@@ -1,7 +1,11 @@
 import { Input, Space, AutoComplete } from "antd";
+import { Header } from "antd/lib/layout/layout";
+import React from "react";
 
 import { useCountryList } from "../apiServices/apiService";
 import { countryListData } from "../interfaces";
+
+import { MenuS, Logo } from "./StyledAppContainer";
 
 const { Search } = Input;
 interface Props {
@@ -17,28 +21,31 @@ const SearchBar = ({ handleSelectCountry }: Props) => {
 		  });
 
 	return (
-		<>
-			{!countryListData.isLoading && (
-				<Space direction="vertical">
-					<AutoComplete
-						options={countryList}
-						onSelect={handleSelectCountry}
-						filterOption={(inputValue, option) =>
-							option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
-						}
-					>
-						<Search
-							size="large"
-							placeholder="input here"
-							enterButton="Search"
-							allowClear
-							style={{ width: 600 }}
-							onSearch={handleSelectCountry}
-						/>
-					</AutoComplete>
-				</Space>
-			)}
-		</>
+		<Header>
+			<MenuS theme="dark" mode="horizontal">
+				<Logo>DisasterReports</Logo>
+				{!countryListData.isLoading && (
+					<Space direction="vertical">
+						<AutoComplete
+							options={countryList}
+							onSelect={handleSelectCountry}
+							filterOption={(inputValue, option) =>
+								option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
+							}
+						>
+							<Search
+								size="middle"
+								placeholder="input here"
+								enterButton="Search"
+								allowClear
+								style={{ width: 400 }}
+								onSearch={handleSelectCountry}
+							/>
+						</AutoComplete>
+					</Space>
+				)}
+			</MenuS>
+		</Header>
 	);
 };
 
