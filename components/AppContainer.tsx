@@ -1,3 +1,4 @@
+import { Content } from "antd/lib/layout/layout";
 import React, { useEffect, useState } from "react";
 import ReactTooltip from "react-tooltip";
 
@@ -15,7 +16,7 @@ const AppContainer = () => {
 	const [content, setContent] = useState("" as string | null);
 
 	const handlePagin = page => setPage(page);
-	const handleSelectCountry = (countryName: string) => setCountryName(countryName);
+	const handleSelectCountry = (countryName: string | null) => setCountryName(countryName);
 
 	const convertPage = useConvertPagination(page);
 	const countryQuery = useCountryDisasterNews(countryName, convertPage);
@@ -25,25 +26,25 @@ const AppContainer = () => {
 	useEffect(() => {
 		setPage(1);
 	}, [countryName]);
-	useEffect(() => {
-		console.log(content);
-	}, [content]);
+
 	return (
 		<>
 			<SearchWrapper>
 				<SearchBar handleSelectCountry={handleSelectCountry} />
 			</SearchWrapper>
-			<ListWrapper showList={showList} isLoading={countryQuery.isLoading}>
-				<DisasterList
-					countryQuery={countryQuery}
-					countryName={countryName}
-					handlePagin={handlePagin}
-					page={page}
-					handleCleanCountry={() => setCountryName("")}
-				/>
-			</ListWrapper>
-			<MapChart selectCountry={handleSelectCountry} setTooltipContent={setContent} />
-			<ReactTooltip backgroundColor="#1f1a1a">{content}</ReactTooltip>
+			<Content>
+				<ListWrapper showList={showList} isLoading={countryQuery.isLoading}>
+					<DisasterList
+						countryQuery={countryQuery}
+						countryName={countryName}
+						handlePagin={handlePagin}
+						page={page}
+						handleCleanCountry={() => setCountryName("")}
+					/>
+				</ListWrapper>
+				<MapChart selectCountry={handleSelectCountry} setTooltipContent={setContent} />
+				<ReactTooltip backgroundColor="#1f1a1a">{content}</ReactTooltip>
+			</Content>
 		</>
 	);
 };
