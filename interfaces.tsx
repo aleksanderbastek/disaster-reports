@@ -57,3 +57,18 @@ export interface totalCountListResponse {
 	count: number;
 	embedded: Embedded;
 }
+
+// iso3 converter
+
+export interface countryListAllIsoDataType {
+	code: string;
+	code3: string;
+	name: string;
+	number: string;
+}
+
+export interface DataIso3 {
+	value: string;
+	count: number;
+	ISO3: string;
+}
